@@ -1,23 +1,20 @@
 DailyQuiz
 =========
 
-DailyQuiz é um projeto educativo utilizado pela equipe de Sistemas da Sidlar.
-
-O projeto é constituído por diversas entregas com prazos definidos. 
-Para visualizar as próximas entregas, acesse o wiki através do link https://github.com/sidlar/DailyQuiz/wiki.
+DailyQuiz é um projeto educativo utilizado pela equipe de Sistemas da Sidlar e é constituído por diversas entregas com prazos bem definidos. Para visualizar as próximas entregas, acesse o wiki em https://github.com/sidlar/DailyQuiz/wiki.
 
 Como preparar o ambiente de desenvolvimento?
 
 - Instale o JDK 8
-- Crie uma variável '$JAVA_HOME' apontando-a para o diretório da instalação do JDK8.
+- Crie uma variável de ambiente '$JAVA_HOME' e especifique o diretório da instalação do JDK8.
 
 - Instale ("unzip") o Apache Maven (http://maven.apache.org/)
-- Crie uma variável de ambiente chamado 'M2_HOME' e faça-o apontar para o diretório de instalação do Maven.
+- Crie uma variável de ambiente 'M2_HOME' e especifique o diretório de instalação do Maven.
 - (Opcional) Adicione o path '$M2_HOME/bin' na variável de ambiente '$PATH'.
 
-- Crie uma conta no GitHub (se ainda não a possui).
+- Crie uma conta no github.com (se ainda não a possui).
 - Faça o fork do projeto DailyQuiz (https://github.com/sidlar/DailyQuiz/) para a sua conta no GitHub.
-- Faça o clone do projeto que você fez o fork.
+- Faça o clone do projeto.
 
 - Instale o Tomcat 8
 
