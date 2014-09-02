@@ -11,6 +11,14 @@
 
     <mvc:annotation-driven />
 
+    <context:component-scan base-package="br.com.sidlar.dailyquiz.interceptor"/>
+
+    <mvc:annotation-driven/>
+
+    <mvc:interceptors>
+        <beans:bean class="br.com.sidlar.dailyquiz.interceptor.AutorizadorInterceptor" />
+    </mvc:interceptors>
+
     <!--<default-servlet-handler/>-->
     <resources mapping="/resources/**" location="/resources/" cache-period="31556926"/>
 

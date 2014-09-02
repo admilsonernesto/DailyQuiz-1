@@ -6,8 +6,8 @@
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="shutdown">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="username" value="root" />
-        <property name="password" value="rootroot" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost/dailyquiz" />
+        <property name="password" value="ROOT" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost/DailyQuiz1" />
         <property name="maximumPoolSize" value="100" />
     </bean>
 

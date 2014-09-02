@@ -7,7 +7,11 @@
 </head>
 <body>
 
-    <form method="post">
+    <c:url var="login" value='/EfetuaLogin'/>
+    <form method="post" action="${login}">
+        <c:if test="${not empty mensagemErro}">
+            <div class="alert alert-danger" style="margin-bottom: 1em;">${mensagemErro}</div>
+        </c:if>
         <h2>Login</h2>
         <input type="text" name="username" placeholder="username" required autofocus>
         <input type="password" name="senha" placeholder="senha" required>
