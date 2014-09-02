@@ -28,9 +28,9 @@ public class LoginController {
     @RequestMapping(value = "/EfetuaLogin", method = RequestMethod.POST)
     public String efetuaLogin(@RequestParam String username,@RequestParam String senha, HttpSession session, HttpServletRequest request) {
         Membro membro = membroRepository.buscaMembroPorUsername(username);
-        AutenticaMembro autenticaMembro = new AutenticaMembro(membro, senha, session);
+        Autenticador autenticador = new Autenticador(membro, senha, session);
 
-        if(!autenticaMembro.executa()){
+        if(!autenticador.autentica()){
             request.setAttribute("mensagemErro", "Username ou senha inválido");
             return "/Login/login";
         }

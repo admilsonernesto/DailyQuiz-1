@@ -6,21 +6,21 @@ import org.apache.commons.codec.digest.DigestUtils;
 import javax.servlet.http.HttpSession;
 
 /**
- * Caso a verificação do login seja válida então autentica o membro na sessão
- * Na validação da senha utilizamos o hash no formato hexadecimal com o algorítimo MD5
+ * Autentica o membro na sessão caso login seja válido.
+ * A validação da senha é feita através do hash da senha no formato hexadecimal utilizando o algorítimo MD5
  */
-public class AutenticaMembro {
+public class Autenticador {
     private Membro membro;
     private String senha;
     private HttpSession session;
 
-    public AutenticaMembro(Membro membro, String senha, HttpSession session) {
+    public Autenticador(Membro membro, String senha, HttpSession session) {
         this.membro = membro;
         this.senha = senha;
         this.session = session;
     }
 
-    public boolean executa() {
+    public boolean autentica() {
         if (!validaLogin()){
             return false;
         }
