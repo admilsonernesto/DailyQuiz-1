@@ -7,15 +7,14 @@
 </head>
 <body>
 
-    <c:url var="login" value='/EfetuaLogin'/>
-    <form method="post" action="${login}">
+    <form method="post" action="<c:url value='/Login'/>">
         <c:if test="${not empty mensagemErro}">
             <div class="alert alert-danger" style="margin-bottom: 1em;">${mensagemErro}</div>
         </c:if>
         <h2>Login</h2>
-        <input type="text" name="username" placeholder="username" required autofocus>
+        <input type="email" name="email" placeholder="email" required autofocus>
         <input type="password" name="senha" placeholder="senha" required>
-        <button type="submit">Entrar</button>
+        <button type="submit">Entrar</button> <a style="margin-left: 2em" href="<c:url value='/CadastroMembro'/>">Novo Membro</a>
     </form>
 
 </body>

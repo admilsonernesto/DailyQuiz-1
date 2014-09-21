@@ -9,8 +9,11 @@ CREATE DATABASE `dailyquiz1`
 use dailyquiz1;
 
 CREATE TABLE `dailyquiz1`.`membro` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NOT NULL,
-  `username` VARCHAR(50) NOT NULL,
-  `senha` VARCHAR(12) NOT NULL,
-  PRIMARY KEY (`id`));
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `senha` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `dataNascimento` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+

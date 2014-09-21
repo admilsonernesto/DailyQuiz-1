@@ -17,22 +17,26 @@ public class MembroRepository {
     private EntityManager em;
 
     /**
-     * Caso não encontre nenhum membro com o username informado retornará nulo.
-     * @param username username do membro
+     * Caso não encontre nenhum membro com o email informado retornará nulo.
+     * @param email email do membro
      * @return membro encontrado
      */
-    public Membro buscaMembroPorUsername(String username) {
+    public Membro buscaMembroPorEmail(String email) {
         TypedQuery<Membro> query = em.createQuery(
                 "SELECT m " +
                 "FROM Membro m " +
-                "WHERE m.username= :username "
+                "WHERE m.email= :email "
                 , Membro.class
-        ).setParameter("username", username);
+        ).setParameter("email", email);
 
         try {
             return query.getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
+    }
+
+    public void salva(Membro membro) {
+        em.persist(membro);
     }
 }

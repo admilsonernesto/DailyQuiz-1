@@ -7,6 +7,10 @@
 </head>
 <body>
 
-<h3>Olá, ${sessionScope.membroAutenticado.nome}!</h3>
+    <c:if test="${not empty mensagemParabenizacao}">
+        <div class="alert alert-info">${mensagemParabenizacao}</div>
+    </c:if>
+
+    <h3>Olá, ${sessionScope.membroAutenticado.membro.nome}!</h3>
 </body>
 </html>

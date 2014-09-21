@@ -12,6 +12,12 @@
     <!-- Domain Layer -->
     <context:component-scan base-package="br.com.sidlar.dailyquiz.domain" />
 
+    <!-- Infrastructure Layer -->
+    <context:component-scan base-package="br.com.sidlar.dailyquiz.infrastructure" />
+
+    <!-- Application Layer -->
+    <context:component-scan base-package="br.com.sidlar.dailyquiz.application" />
+
     <!--
      **** *************************************************************************************************************
      ****  Feature enabling

@@ -15,7 +15,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="<c:url value='/Logout'/>">Sair</a></li>
+                <li><a href="<c:url value='/Logout'/>">Logout</a></li>
             </ul>
         </div>
     </div>
