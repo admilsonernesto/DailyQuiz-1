@@ -38,8 +38,13 @@ class Validador {
             return;
         }
 
-        if(form.getSenha().length() <= 3){
-            errors.rejectValue("senha","errors","Senha deve conter no mínimo 4 caracteres!");
+        if(form.getSenha().length() <= 5){
+            errors.rejectValue("senha","errors","Senha deve conter no mínimo 6 caracteres!");
+            return;
+        }
+
+        if(form.getSenha().length() > 10){
+            errors.rejectValue("senha","errors","Senha deve conter no máximo 10 caracteres!");
             return;
         }
 
