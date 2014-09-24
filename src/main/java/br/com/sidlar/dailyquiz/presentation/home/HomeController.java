@@ -26,8 +26,8 @@ public class HomeController {
             return String.format("%s, parabéns pelos seus %s anos de vida.",membro.getNome(),membro.getIdade());
         }
 
-        if(membro.getQuantidadeDiasParaProximoAniversario() <=5){
-            return String.format("%s, falta(m) apenas %s dia(s) para o seu aniversário.",membro.getNome(),membro.getQuantidadeDiasParaProximoAniversario());
+        if(membro.getQuantidadeDiasParaProximoAniversario().getDays() > 0 && membro.getQuantidadeDiasParaProximoAniversario().getDays() <=5){
+            return String.format("%s, falta(m) apenas %s dia(s) para o seu aniversário.",membro.getNome(),membro.getQuantidadeDiasParaProximoAniversario().getDays());
         }
         return "";
     }

@@ -1,8 +1,8 @@
 package br.com.sidlar.dailyquiz.domain;
 
 import org.hibernate.annotations.Type;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
-import org.joda.time.Period;
 import org.joda.time.Years;
 
 import javax.persistence.*;
@@ -67,8 +67,8 @@ public class Membro {
         this.dataNascimento = dataNascimento;
     }
 
-    public int getIdade(){
-        return Years.yearsBetween(dataNascimento, LocalDate.now()).getYears();
+    public Years getIdade(){
+        return Years.yearsBetween(dataNascimento, LocalDate.now());
     }
 
     /**
@@ -83,12 +83,13 @@ public class Membro {
     }
 
     /**
-     * Calcula a diferença em dias entre a data de nascimento até hoje
+     * Calcula a diferença em dias de hoje até o próximo aniversário do membro
      * @return Quantidade de dias para o próximo aniversário
      */
-    public int getQuantidadeDiasParaProximoAniversario(){
-        Period periodo = Period.fieldDifference(getDataNascimento(), LocalDate.now());
-        return periodo.getDays();
+    public Days getQuantidadeDiasParaProximoAniversario(){
+        LocalDate hoje = LocalDate.now();
+        LocalDate proximoAniversario = new LocalDate(hoje.getYear(),getDataNascimento().getMonthOfYear(),getDataNascimento().getDayOfMonth());
+        return Days.daysBetween(hoje, proximoAniversario);
     }
 
 
