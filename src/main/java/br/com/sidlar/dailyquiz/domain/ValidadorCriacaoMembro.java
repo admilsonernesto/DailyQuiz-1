@@ -1,11 +1,9 @@
 package br.com.sidlar.dailyquiz.domain;
 
-import br.com.sidlar.dailyquiz.infrastructure.autenticacao.ValidacaoEmailUtils;
+import br.com.sidlar.dailyquiz.infrastructure.utilitarios.ValidacaoEmailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
-import javax.persistence.EntityExistsException;
 
 /**
  * Valida a especificação para a criação de um novo membro
@@ -38,13 +36,18 @@ public class ValidadorCriacaoMembro {
             throw new IllegalArgumentException("Email inválido!");
         }
 
-        if (existeEmailCadastrado(especMembro.getEmail())){
-            throw new EntityExistsException("Já existe um membro com o email informado!");
+        if (verificaSeExisteEmailCadastrado(especMembro.getEmail())){
+            throw new RuntimeException("Já existe um membro com o email informado!");
         }
     }
 
-    private boolean existeEmailCadastrado(String email) {
-        return membroRepository.buscaMembroPorEmail(email) != null;
+    private boolean verificaSeExisteEmailCadastrado(String email) {
+        try {
+            membroRepository.buscaMembroPorEmail(email);
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
     }
 
 }

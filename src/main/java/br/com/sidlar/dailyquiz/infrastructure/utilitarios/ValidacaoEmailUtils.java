@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.infrastructure.autenticacao;
+package br.com.sidlar.dailyquiz.infrastructure.utilitarios;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

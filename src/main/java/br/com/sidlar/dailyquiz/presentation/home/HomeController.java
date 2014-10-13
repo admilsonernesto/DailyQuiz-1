@@ -7,7 +7,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RequestMapping("/")
@@ -17,12 +16,12 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String goHome(ModelMap modelMap, HttpSession session) {
         modelMap.addAttribute("mensagemParabenizacao", getMensagemParabenizacao(session));
-        return "/Home/index";
+        return "Home/index";
     }
 
     private String getMensagemParabenizacao(HttpSession session) {
         Membro membro = ((AutenticacaoMembro)session.getAttribute("membroAutenticado")).getMembro();
-        if (membro.isAniversariante()){
+        if (membro.fazAniversarioHoje()){
             return String.format("%s, parabéns pelos seus %s anos de vida.",membro.getNome(),membro.getIdade());
         }
 

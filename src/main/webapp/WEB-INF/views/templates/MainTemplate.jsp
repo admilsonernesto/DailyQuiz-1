@@ -35,8 +35,7 @@
 
     <div class="container">
         <decorator:body/>
-
-    </div><!--/.container-->
+    </div>
 
 </body>
 </html>

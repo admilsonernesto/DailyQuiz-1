@@ -23,8 +23,8 @@
 </head>
 
 <body>
-
-<decorator:body/>
-
+    <div class="container">
+        <decorator:body/>
+    </div>
 </body>
 </html>

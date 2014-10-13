@@ -17,7 +17,7 @@ public class MembroRepository {
     private EntityManager em;
 
     /**
-     * Caso não encontre nenhum membro com o email informado retornará nulo.
+     * Caso não encontre nenhum membro com o email informado lançará a exceção do tipo {@link java.lang.RuntimeException}.
      * @param email email do membro
      * @return membro encontrado
      */
@@ -32,7 +32,7 @@ public class MembroRepository {
         try {
             return query.getSingleResult();
         } catch (NoResultException e) {
-            return null;
+            throw new RuntimeException("Membro não encontrado com o email " + email);
         }
     }
 

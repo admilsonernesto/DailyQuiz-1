@@ -1,6 +1,7 @@
-package br.com.sidlar.dailyquiz.interceptor;
+package br.com.sidlar.dailyquiz.infrastructure.autorizador;
 
 import br.com.sidlar.dailyquiz.infrastructure.autenticacao.AutenticacaoMembro;
+import br.com.sidlar.dailyquiz.infrastructure.autenticacao.AutenticacaoUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,16 +23,11 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        if(membroNaoEstaAutenticado(request)){
+        if(!AutenticacaoUtils.membroEstaAutenticadoNaSession(request.getSession())){
             response.sendRedirect("/Login");
             return false;
         }
-
         return true;
-    }
-
-    private boolean membroNaoEstaAutenticado(HttpServletRequest request) {
-        return !(request.getSession().getAttribute("membroAutenticado") instanceof AutenticacaoMembro);
     }
 }
 

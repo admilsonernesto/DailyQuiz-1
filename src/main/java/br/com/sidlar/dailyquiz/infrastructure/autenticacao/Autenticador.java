@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
  * <p><strong>Serviço de Autenticação de um Membro.</strong>
  * <p> Passos para autenticação:
  * <ul>
- *  <li>Valida se existe um membro com o email informado;
+ *  <li>Verifica se existe um membro com o email informado;
  *  <li>Valida se o hash da senha informada confere com a senha do membro;
  *  <li>Armazena o membro na sessão {@link javax.servlet.http.HttpSession}.
  * </ul>
@@ -30,28 +30,21 @@ public class Autenticador {
     private HttpSession session;
 
     /**
-     * <p>Autentica um membro validando email, senha e armazenando na sessão.
-     * @return retorna se o usuário foi autenticado
-     * @param email email do membro para autenticação
-     * @param senha senha do membro para autenticação
+     *Autentica um membro validando email, senha e armazenando na sessão.
      */
-    public boolean autentica(String email, String senha) {
-        Membro membro = membroRepository.buscaMembroPorEmail(email);
-
-        if(naoFoiEncontradoMembroComEmailInformado(membro)) return false;
-        if(senhaNaoConfere(membro, senha))return false;
+    public void autentica(String email, String senha) throws RuntimeException{
+        Membro membro = buscaMembroComEmail(email);
+        validaSenha(membro, senha);
         armazenaMembroNaSessao(membro);
-
-        return true;
     }
 
-    private boolean naoFoiEncontradoMembroComEmailInformado(Membro membro) {
-        return membro == null;
+    private Membro buscaMembroComEmail(String email) {
+        return membroRepository.buscaMembroPorEmail(email);
     }
 
 
     private void armazenaMembroNaSessao(Membro membro) {
-        session.setAttribute("membroAutenticado", new AutenticacaoMembro(membro));
+        AutenticacaoUtils.armazenaAutenticacaoMembroNaSession(new AutenticacaoMembro(membro), session);
     }
 
     /**
@@ -63,15 +56,13 @@ public class Autenticador {
         return geradorDigest.geraHashSenha(senha);
     }
 
-
     /**
-     * A validação da senha é feita através do hash da senha
-     * @return retorna a comparação da senha do membro com a senha informada
-     * @param membro membro para verificar a senha
-     * @param senha senha informada
+     * A validação da senha é feita utilizando o hash da senha
      */
-    private boolean senhaNaoConfere(Membro membro, String senha) {
-        return !membro.getSenha().equals(getDigestDaSenha(senha));
+    private void validaSenha(Membro membro, String senha) {
+        if(!membro.getSenha().equals(getDigestDaSenha(senha))){
+            throw new RuntimeException("A senha do membro não confere com a senha informada.");
+        }
     }
 
 }

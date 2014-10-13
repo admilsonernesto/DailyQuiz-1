@@ -11,12 +11,12 @@
 
     <mvc:annotation-driven />
 
-    <context:component-scan base-package="br.com.sidlar.dailyquiz.interceptor"/>
+    <context:component-scan base-package="br.com.sidlar.dailyquiz.infrastructure.autorizador"/>
 
     <mvc:annotation-driven/>
 
     <mvc:interceptors>
-        <beans:bean class="br.com.sidlar.dailyquiz.interceptor.AutorizadorInterceptor" />
+        <beans:bean class="br.com.sidlar.dailyquiz.infrastructure.autorizador.AutorizadorInterceptor" />
     </mvc:interceptors>
 
     <!--<default-servlet-handler/>-->

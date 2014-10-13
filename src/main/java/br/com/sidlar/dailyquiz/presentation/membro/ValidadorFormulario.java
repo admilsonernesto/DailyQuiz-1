@@ -1,6 +1,6 @@
 package br.com.sidlar.dailyquiz.presentation.membro;
 
-import br.com.sidlar.dailyquiz.infrastructure.autenticacao.ValidacaoEmailUtils;
+import br.com.sidlar.dailyquiz.infrastructure.utilitarios.ValidacaoEmailUtils;
 import org.joda.time.LocalDate;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -9,17 +9,17 @@ import org.springframework.validation.BindingResult;
  * Valida formulário de cadastro de um novo membro
  * @author Admilson
  */
-class Validador {
+class ValidadorFormulario {
 
     private FormularioMembro form;
     private BindingResult errors;
 
-    public Validador(FormularioMembro form, BindingResult errors) {
+    public ValidadorFormulario(FormularioMembro form, BindingResult errors) {
         this.form = form;
         this.errors = errors;
     }
 
-    public boolean isValido() {
+    public boolean estaPreenchidoCorretamente() {
 
         validaNome();
 

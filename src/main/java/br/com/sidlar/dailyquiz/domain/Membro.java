@@ -72,14 +72,12 @@ public class Membro {
     }
 
     /**
-     * Verifica se o mes e ano do nascimento é igual ao mes ano de hoje
      * @return se é o aniversário do membro
      */
-    public boolean isAniversariante() {
-        LocalDate hoje = LocalDate.now();
-        MonthDay diaMesAniversario = MonthDay.of(getDataNascimento().getMonthOfYear(), getDataNascimento().getDayOfMonth());
-        MonthDay diaMesAtual = MonthDay.of(hoje.getMonthOfYear(), hoje.getDayOfMonth());
-        return diaMesAniversario.equals(diaMesAtual);
+    public boolean fazAniversarioHoje() {
+        MonthDay aniversario = MonthDay.of(getDataNascimento().getMonthOfYear(), getDataNascimento().getDayOfMonth());
+        MonthDay hoje = MonthDay.now();
+        return aniversario.equals(hoje);
     }
 
     /**

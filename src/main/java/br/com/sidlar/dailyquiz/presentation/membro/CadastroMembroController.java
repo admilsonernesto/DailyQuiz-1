@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @RequestMapping("/CadastroMembro")
 @Controller
-public class MembroController {
+public class CadastroMembroController {
 
     @Autowired
     private MembroApplication membroApplication;
@@ -25,19 +25,23 @@ public class MembroController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String salvaMembro(ModelMap modelMap, @ModelAttribute("form") FormularioMembro form,  BindingResult errors) {
-        Validador validador = new Validador(form, errors);
-        if (!validador.isValido()){
-            return preparaModel(modelMap, form);
-        }
+    public String criaMembro(ModelMap modelMap, @ModelAttribute("form") FormularioMembro form, BindingResult errors) {
 
-        try {
-            membroApplication.salva(form.toEspecificacaoMembro());
-            modelMap.addAttribute("mensagemSucesso", "Membro cadastrado com sucesso.");
-        } catch (Exception e) {
-            modelMap.addAttribute("mensagemErro", e.getMessage());
-        }
-        return "/Membro/cadastro";
+        throw new RuntimeException("pelou");
+
+
+//        ValidadorFormulario validadorFormulario = new ValidadorFormulario(form, errors);
+//        if (!validadorFormulario.estaPreenchidoCorretamente()){
+//            return preparaModel(modelMap, form);
+//        }
+//
+//        try {
+//            membroApplication.salva(form.toEspecificacaoMembro());
+//            modelMap.addAttribute("mensagemSucesso", "Membro cadastrado com sucesso.");
+//        } catch (Exception e) {
+//            return preparaModel(modelMap, form);
+//        }
+//        return "/Membro/cadastro";
     }
 
     private String preparaModel(ModelMap modelMap, FormularioMembro form) {
