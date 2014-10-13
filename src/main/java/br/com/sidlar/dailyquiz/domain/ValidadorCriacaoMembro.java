@@ -1,9 +1,7 @@
 package br.com.sidlar.dailyquiz.domain;
 
-import br.com.sidlar.dailyquiz.infrastructure.utilitarios.ValidacaoEmailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * Valida a especificação para a criação de um novo membro
@@ -16,38 +14,30 @@ public class ValidadorCriacaoMembro {
     private MembroRepository membroRepository;
 
     public void valida(EspecificacaoMembro especMembro) {
-        if (StringUtils.isEmpty(especMembro.getNome())){
-            throw new IllegalArgumentException("Nome não informado!");
-        }
+        especMembro.validaNome();
 
-        if (StringUtils.isEmpty(especMembro.getSenha())){
-            throw new IllegalArgumentException("Senha não informada!");
-        }
+        especMembro.validaSenha();
 
-        if (StringUtils.isEmpty(especMembro.getDataNascimento())){
-            throw new IllegalArgumentException("Data nascimento não informada!");
-        }
+        especMembro.validaDataNascimento();
 
-        if (StringUtils.isEmpty(especMembro.getEmail())){
-            throw new IllegalArgumentException("Email não informado!");
-        }
+        especMembro.validaEmail();
 
-        if(!ValidacaoEmailUtils.isValido(especMembro.getEmail())){
-            throw new IllegalArgumentException("Email inválido!");
-        }
+        validaSeExisteMembroComEmailInformado(especMembro);
+    }
 
-        if (verificaSeExisteEmailCadastrado(especMembro.getEmail())){
+    private void validaSeExisteMembroComEmailInformado(EspecificacaoMembro especMembro) {
+        if (existeEmailCadastrado(especMembro.getEmail())){
             throw new RuntimeException("Já existe um membro com o email informado!");
         }
     }
 
-    private boolean verificaSeExisteEmailCadastrado(String email) {
+    private boolean existeEmailCadastrado(String email) {
         try {
             membroRepository.buscaMembroPorEmail(email);
+            return true;
         } catch (RuntimeException e) {
             return false;
         }
-        return true;
     }
 
 }

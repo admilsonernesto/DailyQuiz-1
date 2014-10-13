@@ -45,28 +45,28 @@
             <table>
                 <tr>
                     <td><label for="nome">Nome:</label></td>
-                    <td><form:input path="nome" id="nome" size="30" maxlength="50" tabindex="1"/>  <form:errors path="nome" cssClass="error"/></td>
+                    <td><form:input path="especificacaoMembro.nome" id="nome" size="30" maxlength="50" tabindex="1"/>  <form:errors path="nome" cssClass="error"/></td>
                 </tr>
                 <tr>
                     <td colspan="2">&nbsp;</td>
                 </tr>
                 <tr>
                     <td><label for="nome">Data Nascimento:</label></td>
-                    <td><form:input type="date" path="dataNascimento" id="dataNascimento" size="10" maxlength="50" tabindex="2"/>  <form:errors path="dataNascimento" cssClass="error"/></td>
+                    <td><form:input type="date" path="especificacaoMembro.dataNascimento" id="dataNascimento" size="10" maxlength="50" tabindex="2"/>  <form:errors path="dataNascimento" cssClass="error"/></td>
                 </tr>
                 <tr>
                     <td colspan="2">&nbsp;</td>
                 </tr>
                 <tr>
                     <td><label for="email">E-mail:</label></td>
-                    <td><form:input type="email" path="email" id="email" size="30" maxlength="50" tabindex="3"/> <form:errors path="email" cssClass="error"/></td>
+                    <td><form:input type="email" path="especificacaoMembro.email" id="email" size="30" maxlength="50" tabindex="3"/> <form:errors path="email" cssClass="error"/></td>
                 </tr>
                 <tr>
                     <td colspan="2">&nbsp;</td>
                 </tr>
                 <tr>
                     <td><label for="senha">Senha:</label></td>
-                    <td><form:password path="senha" id="senha" size="20" maxlength="10" tabindex="4"/> <form:errors path="senha" cssClass="error"/></td>
+                    <td><form:password path="especificacaoMembro.senha" id="senha" size="20" maxlength="10" tabindex="4"/> <form:errors path="senha" cssClass="error"/></td>
                 </tr>
                 <tr>
                     <td colspan="2">&nbsp;</td>

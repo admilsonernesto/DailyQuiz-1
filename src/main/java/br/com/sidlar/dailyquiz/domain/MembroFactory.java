@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * <p><strong>Fabrica um membro com os dados do formulário</strong>
+ * <p><strong>Fabrica um membro com os dados da especificação</strong>
  * <ul>Passos da criação de um Membro:
  * <li>Valida as informações do formulário;</li>
  * <li>Salva o membro utilizando o hash da senha conforme especificação</li>
@@ -22,22 +22,18 @@ public class MembroFactory {
     @Autowired
     private GeradorDigest geradorDigest;
 
-    @Autowired
-    private MembroRepository membroRepository;
-
-    public void cria(EspecificacaoMembro especificacaoMembro) {
+    public Membro cria(EspecificacaoMembro especificacaoMembro) {
         validadorCriacaoMembro.valida(especificacaoMembro);
-        criaMembro(especificacaoMembro);
+        return criaMembro(especificacaoMembro);
     }
 
-    private void criaMembro(EspecificacaoMembro espec) {
-        Membro membro = new Membro(
+    private Membro criaMembro(EspecificacaoMembro espec) {
+        return new Membro(
                 espec.getNome(),
                 espec.getEmail(),
                 getHash(espec.getSenha()),
                 espec.getDataNascimento()
         );
-        membroRepository.salva(membro);
     }
 
     /**

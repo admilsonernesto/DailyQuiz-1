@@ -1,8 +1,7 @@
 package br.com.sidlar.dailyquiz.application;
 
 import br.com.sidlar.dailyquiz.domain.EspecificacaoMembro;
-import br.com.sidlar.dailyquiz.domain.Membro;
-import br.com.sidlar.dailyquiz.domain.MembroService;
+import br.com.sidlar.dailyquiz.domain.CadastroMembroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Admilson
  */
 @Component
-public class MembroApplication {
+public class CadastroMembroApplication {
 
     @Autowired
-    private MembroService membroService;
+    private CadastroMembroService cadastroMembroService;
 
     @Transactional(readOnly = false)
-    public void salva(EspecificacaoMembro especificacaoMembro) {
-        membroService.salva(especificacaoMembro);
+    public void criaMembroDaEspecificacao(EspecificacaoMembro especificacaoMembro) {
+        cadastroMembroService.criaMembro(especificacaoMembro);
     }
 }

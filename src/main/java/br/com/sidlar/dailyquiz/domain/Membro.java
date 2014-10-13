@@ -28,7 +28,7 @@ public class Membro {
     public Membro() {
     }
 
-    public Membro(String nome, String email, String senha, LocalDate dataNascimento) {
+    Membro(String nome, String email, String senha, LocalDate dataNascimento) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -98,21 +98,21 @@ public class Membro {
 
         Membro membro = (Membro) o;
 
-        if (email != null ? !email.equalsIgnoreCase(membro.email) : membro.email != null) return false;
+        if (!email.equalsIgnoreCase(membro.email)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return email != null ? email.hashCode() : 0;
+        return email.hashCode();
     }
 
     @Override
     public String toString() {
         return "Membro{" +
-                "email='" + email + '\'' +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\''+
                 '}';
     }
-
 }

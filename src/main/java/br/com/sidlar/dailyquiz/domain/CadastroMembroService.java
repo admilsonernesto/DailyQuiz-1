@@ -9,14 +9,17 @@ import javax.persistence.EntityExistsException;
  * @author Admilson
  */
 @Component
-public class MembroService {
+public class CadastroMembroService {
 
     @Autowired
     private MembroFactory membroFactory;
 
-    public void salva(EspecificacaoMembro especificacaoMembro) {
-        membroFactory.cria(especificacaoMembro);
+    @Autowired
+    private MembroRepository membroRepository;
 
+    public void criaMembro(EspecificacaoMembro especificacaoMembro) {
+        Membro membro = membroFactory.cria(especificacaoMembro);
+        membroRepository.salva(membro);
     }
 
 
