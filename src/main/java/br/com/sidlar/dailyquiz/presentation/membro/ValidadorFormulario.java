@@ -1,5 +1,6 @@
 package br.com.sidlar.dailyquiz.presentation.membro;
 
+import br.com.sidlar.dailyquiz.domain.FalhaCriacaoMembroException;
 import br.com.sidlar.dailyquiz.infrastructure.utilitarios.ValidacaoEmailUtils;
 import org.joda.time.LocalDate;
 import org.springframework.util.StringUtils;
@@ -20,48 +21,58 @@ class ValidadorFormulario {
     }
 
     public boolean isPreenchidoCorretamente() {
-
         validaNome();
-
         validaEmail();
-
         validaDataNascimento();
-
         validaSenha();
-
         return !errors.hasErrors();
     }
 
-    private void validaSenha() {
-        try {
-            form.validaSenha();
-        } catch (Exception e) {
-            errors.rejectValue("senha","errors",e.getMessage());
+    public void validaSenha(){
+        if(StringUtils.isEmpty(form.getSenha())){
+            errors.rejectValue("senha","errors","Senha não informada!");
+        }
+
+        if(form.getSenha().length() <= 5){
+            errors.rejectValue("senha","errors","Senha deve conter no mínimo 6 caracteres!");
+        }
+
+        if(form.getSenha().length() > 10){
+            errors.rejectValue("senha","errors","Senha deve conter no máximo 10 caracteres!");
+        }
+
+        if(StringUtils.isEmpty(form.getConfirmacaoSenha())){
+            errors.rejectValue("senha","errors","Confirmação da senha não informada!");
+        }
+
+        if(!form.getSenha().equals(form.getConfirmacaoSenha())){
+            errors.rejectValue("senha","errors","Confirmação da senha não confere!");
         }
     }
 
-    private void validaEmail() {
-        try {
-            form.validaEmail();
-        } catch (Exception e) {
-            errors.rejectValue("email", "errors", e.getMessage());
+    public void validaEmail() {
+        if(StringUtils.isEmpty(form.getEmail())){
+            errors.rejectValue("email", "errors","Email não informado!");
+        }
+
+        if(!ValidacaoEmailUtils.isValido(form.getEmail())){
+            errors.rejectValue("email", "errors","Email no formato inválido!");
         }
     }
 
-    private void validaNome() {
-        try {
-            form.validaNome();
-        } catch (Exception e) {
-            errors.rejectValue("nome","errors",e.getMessage());
+    public void validaNome() {
+        if(StringUtils.isEmpty(form.getNome())){
+            errors.rejectValue("nome","errors","Nome não informado!");
         }
     }
 
-    private void validaDataNascimento() {
-        try {
-            form.validaDataNascimento();
-        } catch (Exception e) {
-            errors.rejectValue("dataNascimento","errors",e.getMessage());
+    public void validaDataNascimento() {
+        if(StringUtils.isEmpty(form.getDataNascimento())){
+            errors.rejectValue("dataNascimento","errors","Data de nascimento não informada!");
+        }
+
+        if(form.getDataNascimento().isAfter(LocalDate.now())){
+            errors.rejectValue("dataNascimento","errors","Data de nascimento deve ser menor que hoje!");
         }
     }
-
 }

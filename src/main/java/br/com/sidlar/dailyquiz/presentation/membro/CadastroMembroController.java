@@ -36,7 +36,7 @@ public class CadastroMembroController {
         }
 
         try {
-            cadastroMembroApplication.criaMembroDaEspecificacao(form.getEspecificacaoMembro());
+            cadastroMembroApplication.criaMembroDaEspecificacao(form.toEspecificacaoMembro());
             redirectAttrs.addFlashAttribute("mensagemSucesso", "Membro cadastrado com sucesso.");
         } catch (Exception e) {
             redirectAttrs.addFlashAttribute("mensagemErro", e.getMessage());

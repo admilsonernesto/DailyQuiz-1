@@ -1,22 +1,52 @@
 package br.com.sidlar.dailyquiz.presentation.membro;
 
 import br.com.sidlar.dailyquiz.domain.EspecificacaoMembro;
+import br.com.sidlar.dailyquiz.domain.FalhaCriacaoMembroException;
 import org.joda.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.StringUtils;
 
 /**
  * @author Admilson
  */
 class FormularioMembro {
-    private EspecificacaoMembro especificacaoMembro;
+    private String nome;
+    private String email;
+    private String senha;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDate dataNascimento;
     private String confirmacaoSenha;
 
-    public EspecificacaoMembro getEspecificacaoMembro() {
-        return especificacaoMembro;
+    public String getNome() {
+        return nome;
     }
 
-    public void setEspecificacaoMembro(EspecificacaoMembro especificacaoMembro) {
-        this.especificacaoMembro = especificacaoMembro;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public String getConfirmacaoSenha() {
@@ -27,26 +57,7 @@ class FormularioMembro {
         this.confirmacaoSenha = confirmacaoSenha;
     }
 
-    public void validaEmail(){
-        getEspecificacaoMembro().validaEmail();
-    }
-
-    public void validaSenha(){
-        getEspecificacaoMembro().validaSenha();
-
-        if(StringUtils.isEmpty(getConfirmacaoSenha())){
-            throw new IllegalArgumentException("Confirmação da senha não informada!");
-        }
-
-        if(!getEspecificacaoMembro().getSenha().equals(getConfirmacaoSenha())){
-            throw new IllegalArgumentException("Confirmação da senha não confere!");
-        }
-    }
-    public void validaNome(){
-        getEspecificacaoMembro().validaNome();
-    }
-
-    public void validaDataNascimento(){
-        getEspecificacaoMembro().validaDataNascimento();
+    public EspecificacaoMembro toEspecificacaoMembro() {
+        return new EspecificacaoMembro(getNome(),getEmail(), getSenha(), getDataNascimento());
     }
 }

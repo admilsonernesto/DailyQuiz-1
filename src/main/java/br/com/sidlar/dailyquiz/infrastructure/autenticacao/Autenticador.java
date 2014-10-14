@@ -57,7 +57,7 @@ public class Autenticador {
     }
 
     /**
-     * A validação da senha é feita utilizando o hash da senha
+     * Valida através do hash da senha.
      */
     private void validaSenha(Membro membro, String senha) {
         if(!membro.getSenha().equals(getDigestDaSenha(senha))){
