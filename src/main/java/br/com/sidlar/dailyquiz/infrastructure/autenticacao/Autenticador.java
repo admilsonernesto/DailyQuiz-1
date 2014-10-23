@@ -1,7 +1,9 @@
 package br.com.sidlar.dailyquiz.infrastructure.autenticacao;
 
 import br.com.sidlar.dailyquiz.domain.Membro;
+import br.com.sidlar.dailyquiz.domain.MembroNaoEncontradoException;
 import br.com.sidlar.dailyquiz.domain.MembroRepository;
+import br.com.sidlar.dailyquiz.domain.SenhaInvalidaException;
 import br.com.sidlar.dailyquiz.infrastructure.digest.GeradorDigest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,7 +34,7 @@ public class Autenticador {
     /**
      *Autentica um membro validando email, senha e armazenando na sessão.
      */
-    public void autentica(String email, String senha) throws RuntimeException{
+    public void autentica(String email, String senha) throws MembroNaoEncontradoException, SenhaInvalidaException{
         Membro membro = buscaMembroComEmail(email);
         validaSenha(membro, senha);
         armazenaMembroNaSessao(membro);
@@ -52,7 +54,7 @@ public class Autenticador {
      * @param senha senha a ser convertida
      * @return digest da senha
      */
-    public String getDigestDaSenha(String senha){
+    private String getDigestDaSenha(String senha){
         return geradorDigest.geraHashSenha(senha);
     }
 
@@ -61,8 +63,19 @@ public class Autenticador {
      */
     private void validaSenha(Membro membro, String senha) {
         if(!membro.getSenha().equals(getDigestDaSenha(senha))){
-            throw new RuntimeException("A senha do membro não confere com a senha informada.");
+            throw new SenhaInvalidaException("A senha do membro não confere com a senha informada.");
         }
     }
 
+    void setMembroRepository(MembroRepository membroRepository) {
+        this.membroRepository = membroRepository;
+    }
+
+    void setGeradorDigest(GeradorDigest geradorDigest) {
+        this.geradorDigest = geradorDigest;
+    }
+
+    void setSession(HttpSession session) {
+        this.session = session;
+    }
 }

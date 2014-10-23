@@ -30,4 +30,21 @@ public class AutenticacaoMembro {
     public void setInstanteUltimoLogin(DateTime instanteUltimoLogin) {
         this.instanteUltimoLogin = instanteUltimoLogin;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AutenticacaoMembro that = (AutenticacaoMembro) o;
+
+        if (!membro.equals(that.membro)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return membro.hashCode();
+    }
 }

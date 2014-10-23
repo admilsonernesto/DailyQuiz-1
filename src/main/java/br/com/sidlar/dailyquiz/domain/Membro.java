@@ -3,10 +3,11 @@ package br.com.sidlar.dailyquiz.domain;
 import org.hibernate.annotations.Type;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
+import org.joda.time.MonthDay;
 import org.joda.time.Years;
 
 import javax.persistence.*;
-import java.time.MonthDay;
+
 
 
 /**
@@ -75,7 +76,7 @@ public class Membro {
      * @return se é o aniversário do membro
      */
     public boolean fazAniversarioHoje() {
-        MonthDay aniversario = MonthDay.of(getDataNascimento().getMonthOfYear(), getDataNascimento().getDayOfMonth());
+        MonthDay aniversario = new MonthDay(getDataNascimento().getMonthOfYear(), getDataNascimento().getDayOfMonth());
         MonthDay hoje = MonthDay.now();
         return aniversario.equals(hoje);
     }
@@ -86,10 +87,9 @@ public class Membro {
      */
     public Days getQuantidadeDiasParaProximoAniversario(){
         LocalDate hoje = LocalDate.now();
-        LocalDate proximoAniversario = new LocalDate(hoje.getYear(),getDataNascimento().getMonthOfYear(),getDataNascimento().getDayOfMonth());
+        LocalDate proximoAniversario = getDataNascimento().plusYears(getIdade().getYears() + 1);
         return Days.daysBetween(hoje, proximoAniversario);
     }
-
 
     @Override
     public boolean equals(Object o) {

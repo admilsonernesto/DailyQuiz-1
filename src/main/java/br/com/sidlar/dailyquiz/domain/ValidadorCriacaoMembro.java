@@ -1,6 +1,6 @@
 package br.com.sidlar.dailyquiz.domain;
 
-import br.com.sidlar.dailyquiz.infrastructure.utilitarios.ValidacaoEmailUtils;
+import br.com.sidlar.dailyquiz.infrastructure.utilitarios.ValidadorEmailUtils;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -53,7 +53,7 @@ public class ValidadorCriacaoMembro {
             throw new FalhaCriacaoMembroException("Email não informado!");
         }
 
-        if(!ValidacaoEmailUtils.isValido(especMembro.getEmail())){
+        if(!ValidadorEmailUtils.isFormatoCorreto(especMembro.getEmail())){
             throw new FalhaCriacaoMembroException("Email no formato inválido!");
         }
     }

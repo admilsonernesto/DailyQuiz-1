@@ -1,4 +1,9 @@
 package br.com.sidlar.dailyquiz.infrastructure.digest;
+
+import com.sun.istack.internal.NotNull;
+
+import javax.annotation.Nonnull;
+
 /**
  * Strategy para geração de hash da senha.
  *
@@ -13,6 +18,6 @@ public interface GeradorDigest {
      *
      * @return string hexadecimal
      */
-    String geraHashSenha(String senha);
+    String geraHashSenha(@Nonnull String senha);
 
 }

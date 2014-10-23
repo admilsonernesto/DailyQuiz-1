@@ -32,7 +32,7 @@ public class MembroRepository {
         try {
             return query.getSingleResult();
         } catch (NoResultException e) {
-            throw new RuntimeException("Membro não encontrado com o email " + email);
+            throw new MembroNaoEncontradoException("Membro não encontrado com o email " + email + ".");
         }
     }
 

@@ -1,10 +1,6 @@
 package br.com.sidlar.dailyquiz.domain;
 
-import br.com.sidlar.dailyquiz.infrastructure.utilitarios.ValidacaoEmailUtils;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.joda.time.LocalDate;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.util.StringUtils;
 
 /**
  * Especificação para a criação de novos membros
