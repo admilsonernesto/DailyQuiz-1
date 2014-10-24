@@ -33,7 +33,7 @@ public class TesteGeradorDigest {
     }
 
     @Test(expected = NullPointerException.class)//Verify
-    public void geraHashSenhaComSenhaNula(){
+    public void geraHashSenhaComSenhaNula_deveLancarException(){
         //Fixture
         GeradorDigest geradorDigest = new GeradorDigestMd5();
 

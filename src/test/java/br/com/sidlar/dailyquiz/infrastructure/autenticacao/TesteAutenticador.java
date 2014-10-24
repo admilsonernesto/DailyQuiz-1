@@ -26,7 +26,6 @@ public class TesteAutenticador {
     @Mock private MembroRepository membroRepository;
     @Mock private Membro membro;
 
-
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
