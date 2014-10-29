@@ -52,7 +52,7 @@ public class TesteAutenticador {
     public void autenticacaoComSenhaInvalida_deveLancarException(){
         //Fixture
         when(membroRepository.buscaMembroPorEmail(anyString())).thenReturn(membro);
-        doThrow(new SenhaInvalidaException("Senha do membro inválida.")).when(membro).getSenha();
+        when(membro.getSenha()).thenReturn("azaflais");
 
         //Sut
         autenticador.autentica(email, senha);
