@@ -27,21 +27,20 @@ public class CadastroMembroController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String criaMembro(RedirectAttributes redirectAttrs, @ModelAttribute("form") FormularioMembro form, BindingResult errors) {
+    public String criaMembro(ModelMap modelMap, @ModelAttribute("form") FormularioMembro form, BindingResult errors) {
 
         ValidadorFormulario validadorFormulario = new ValidadorFormulario(form, errors);
-        if (validadorFormulario.isPreenchidoCorretamente()){
-            redirectAttrs.addFlashAttribute("form", form);
-            return "redirect:/Membro/cadastro";
+        if (!validadorFormulario.isPreenchidoCorretamente()){
+            modelMap.addAttribute("form", form);
+            return "/Membro/cadastro";
         }
 
         try {
             cadastroMembroApplication.criaMembroDaEspecificacao(form.toEspecificacaoMembro());
-            redirectAttrs.addFlashAttribute("mensagemSucesso", "Membro cadastrado com sucesso.");
         } catch (Exception e) {
-            redirectAttrs.addFlashAttribute("mensagemErro", e.getMessage());
+            modelMap.addAttribute("mensagemErro", e.getMessage());
         }
-        redirectAttrs.addFlashAttribute("form", form);
-        return "redirect:/Membro/cadastro";
+        modelMap.addAttribute("form", form);
+        return "redirect:/";
     }
 }

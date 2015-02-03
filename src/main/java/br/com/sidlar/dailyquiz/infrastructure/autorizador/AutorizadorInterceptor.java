@@ -19,14 +19,14 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
                              Object controller) throws Exception {
         String uri = request.getRequestURI();
 
-        if(uri.endsWith("Login") || uri.endsWith("CadastroMembro") || uri.contains("resources")){
-            return true;
-        }
-
-        if(!AutenticacaoUtils.membroEstaAutenticadoNaSession(request.getSession())){
-            response.sendRedirect("/Login");
-            return false;
-        }
+//        if(uri.endsWith("Login") || uri.endsWith("CadastroMembro") || uri.contains("resources")){
+//            return true;
+//        }
+//
+//        if(!AutenticacaoUtils.membroEstaAutenticadoNaSession(request.getSession())){
+//            response.sendRedirect("/Login");
+//            return false;
+//        }
         return true;
     }
 }

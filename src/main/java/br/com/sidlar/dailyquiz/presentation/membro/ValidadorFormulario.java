@@ -30,18 +30,22 @@ class ValidadorFormulario {
     public void validaSenha(){
         if(StringUtils.isEmpty(form.getSenha())){
             errors.rejectValue("senha","errors","Senha não informada!");
+            return;
         }
 
         if(form.getSenha().length() <= 5){
             errors.rejectValue("senha","errors","Senha deve conter no mínimo 6 caracteres!");
+            return;
         }
 
         if(form.getSenha().length() > 10){
             errors.rejectValue("senha","errors","Senha deve conter no máximo 10 caracteres!");
+            return;
         }
 
         if(StringUtils.isEmpty(form.getConfirmacaoSenha())){
             errors.rejectValue("senha","errors","Confirmação da senha não informada!");
+            return;
         }
 
         if(!form.getSenha().equals(form.getConfirmacaoSenha())){
@@ -52,6 +56,7 @@ class ValidadorFormulario {
     public void validaEmail() {
         if(StringUtils.isEmpty(form.getEmail())){
             errors.rejectValue("email", "errors","Email não informado!");
+            return;
         }
 
         if(!ValidadorEmailUtils.isFormatoCorreto(form.getEmail())){
@@ -68,6 +73,7 @@ class ValidadorFormulario {
     public void validaDataNascimento() {
         if(StringUtils.isEmpty(form.getDataNascimento())){
             errors.rejectValue("dataNascimento","errors","Data de nascimento não informada!");
+            return;
         }
 
         if(form.getDataNascimento().isAfter(LocalDate.now())){

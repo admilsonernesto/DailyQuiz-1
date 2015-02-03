@@ -1,10 +1,8 @@
 package br.com.sidlar.dailyquiz.presentation.membro;
 
-import br.com.sidlar.dailyquiz.domain.EspecificacaoMembro;
-import br.com.sidlar.dailyquiz.domain.FalhaCriacaoMembroException;
+import br.com.sidlar.dailyquiz.domain.membro.EspecificacaoMembro;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.util.StringUtils;
 
 /**
  * @author Admilson
@@ -13,7 +11,7 @@ class FormularioMembro {
     private String nome;
     private String email;
     private String senha;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataNascimento;
     private String confirmacaoSenha;
 

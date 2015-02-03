@@ -1,9 +1,9 @@
 package br.com.sidlar.dailyquiz.infrastructure.autenticacao;
 
-import br.com.sidlar.dailyquiz.domain.Membro;
-import br.com.sidlar.dailyquiz.domain.MembroNaoEncontradoException;
-import br.com.sidlar.dailyquiz.domain.MembroRepository;
-import br.com.sidlar.dailyquiz.domain.SenhaInvalidaException;
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
+import br.com.sidlar.dailyquiz.domain.membro.MembroNaoEncontradoException;
+import br.com.sidlar.dailyquiz.domain.membro.MembroRepository;
+import br.com.sidlar.dailyquiz.domain.membro.SenhaInvalidaException;
 import br.com.sidlar.dailyquiz.infrastructure.digest.GeradorDigest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

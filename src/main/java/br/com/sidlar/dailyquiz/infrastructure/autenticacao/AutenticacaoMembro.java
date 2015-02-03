@@ -1,6 +1,6 @@
 package br.com.sidlar.dailyquiz.infrastructure.autenticacao;
 
-import br.com.sidlar.dailyquiz.domain.Membro;
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import org.joda.time.DateTime;
 
 /**

@@ -1,7 +1,5 @@
 package br.com.sidlar.dailyquiz.infrastructure.digest;
 
-import com.sun.istack.internal.NotNull;
-
 import javax.annotation.Nonnull;
 
 /**

@@ -1,33 +1,38 @@
 package br.com.sidlar.dailyquiz.presentation.home;
 
-import br.com.sidlar.dailyquiz.domain.Membro;
-import br.com.sidlar.dailyquiz.infrastructure.autenticacao.AutenticacaoMembro;
+import br.com.sidlar.dailyquiz.domain.dashboard.DashboardService;
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.security.Principal;
+
+import static br.com.sidlar.dailyquiz.infrastructure.autenticacao.AutenticacaoUtils.obtemAutenticacaoMembroDaSession;
 
 @RequestMapping("/")
 @Controller
 public class HomeController {
 
+    @Autowired
+    private DashboardService dashboardService;
+
     @RequestMapping(method = RequestMethod.GET)
-    public String goHome(ModelMap modelMap, HttpSession session) {
-        modelMap.addAttribute("mensagemParabenizacao", getMensagemParabenizacao(session));
-        return "Home/index";
+    public String goHome(ModelMap modelMap, HttpServletRequest request, @AuthenticationPrincipal Membro membroAutenticado) {
+//        Membro membro = obtemAutenticacaoMembroDaSession(session).getMembro();
+        modelMap.addAttribute("dashboard", dashboardService.criaDashboard(membroAutenticado));
+        return "/Home/home";
     }
 
-    private String getMensagemParabenizacao(HttpSession session) {
-        Membro membro = ((AutenticacaoMembro)session.getAttribute("membroAutenticado")).getMembro();
-        if (membro.fazAniversarioHoje()){
-            return String.format("%s, parabéns pelos seus %s anos de vida.",membro.getNome(),membro.getIdade());
-        }
-
-        if(membro.getQuantidadeDiasParaProximoAniversario().getDays() > 0 && membro.getQuantidadeDiasParaProximoAniversario().getDays() <=5){
-            return String.format("%s, falta(m) apenas %s dia(s) para o seu aniversário.",membro.getNome(),membro.getQuantidadeDiasParaProximoAniversario().getDays());
-        }
-        return "";
+    @RequestMapping(method = RequestMethod.HEAD)
+    public String goHome2(ModelMap modelMap) {
+        return "/Home/home";
     }
 }

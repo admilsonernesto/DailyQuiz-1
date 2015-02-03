@@ -37,9 +37,6 @@
         <c:if test="${not empty mensagemErro}">
             <div class="alert alert-danger" style="margin-bottom: 1em;">${mensagemErro}</div>
         </c:if>
-        <c:if test="${not empty mensagemSucesso}">
-            <div class="alert alert-success" style="margin-bottom: 1em;">${mensagemSucesso}</div>
-        </c:if>
         <fieldset>
             <legend>Novo Membro</legend>
             <table>

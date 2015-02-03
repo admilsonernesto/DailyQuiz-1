@@ -1,7 +1,7 @@
 package br.com.sidlar.dailyquiz.application;
 
-import br.com.sidlar.dailyquiz.domain.EspecificacaoMembro;
-import br.com.sidlar.dailyquiz.domain.CadastroMembroService;
+import br.com.sidlar.dailyquiz.domain.membro.EspecificacaoMembro;
+import br.com.sidlar.dailyquiz.domain.membro.CadastroMembroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

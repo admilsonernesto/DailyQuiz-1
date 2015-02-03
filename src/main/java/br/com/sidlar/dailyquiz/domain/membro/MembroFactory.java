@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.domain;
+package br.com.sidlar.dailyquiz.domain.membro;
 
 import br.com.sidlar.dailyquiz.infrastructure.digest.GeradorDigest;
 import org.springframework.beans.factory.annotation.Autowired;

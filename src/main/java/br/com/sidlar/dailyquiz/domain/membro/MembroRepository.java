@@ -1,5 +1,8 @@
-package br.com.sidlar.dailyquiz.domain;
+package br.com.sidlar.dailyquiz.domain.membro;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,7 +14,7 @@ import javax.persistence.TypedQuery;
  * Created by ADMILSON on 01/09/14.
  */
 @Repository
-public class MembroRepository {
+public class MembroRepository implements UserDetailsService{
 
     @PersistenceContext
     private EntityManager em;
@@ -38,5 +41,10 @@ public class MembroRepository {
 
     public void salva(Membro membro) {
         em.persist(membro);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return buscaMembroPorEmail(email);
     }
 }

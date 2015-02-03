@@ -1,5 +1,6 @@
 package br.com.sidlar.dailyquiz.domain;
 
+import br.com.sidlar.dailyquiz.domain.membro.Membro;
 import org.joda.time.DateTimeUtils;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;

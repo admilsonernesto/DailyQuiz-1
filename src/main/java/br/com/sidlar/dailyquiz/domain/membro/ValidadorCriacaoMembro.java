@@ -1,4 +1,4 @@
-package br.com.sidlar.dailyquiz.domain;
+package br.com.sidlar.dailyquiz.domain.membro;
 
 import br.com.sidlar.dailyquiz.infrastructure.utilitarios.ValidadorEmailUtils;
 import org.joda.time.LocalDate;
